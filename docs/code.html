@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drone Control Code Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .requirements {
+            background-color: #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+        }
+        .file-section {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Drone Control Code Documentation</h1>
+
+<div class="requirements">
+    <h2>REQUIREMENTS</h2>
+    <ol>
+        <li>A conda environment based upon the libraries listed in environment.yml</li>
+        <li>AirSim installed (from Colosseum) and placed in the Plugins directory of an Unreal Engine map.</li>
+        <li>ZED SDK installed</li>
+        <li>(Optional) ROS Environment initialized.</li>
+    </ol>
+</div>
+
+<div class="file-section">
+    <h2><a href="docs/follow_object_airsim.html">follow_object_airsim.py</a></h2>
+    <p>Connects the ZED camera on a laptop to an AirSim client. It employs an object detector network with a single detection category as humans, then captures the first person, reads the distance, and then directs the drone to move towards that distance in meters. The y-axis is fixed in this demo to prevent descending towards the ground.</p>
+</div>
+
+<!--<div class="file-section">
+    <h2><a href="docs/follow_point_airsim.py">follow_point_airsim.py</a></h2>
+    <p>Description pending. (Placeholder for additional details)</p>
+</div> -->
+
+<div class="file-section">
+    <h2><a href="docs/airsim_toROS.html">airsim_toROS.py</a></h2>
+    <p>This module converts the AirSim API to ROS interpretable commands.</p>
+</div>
+
+<div class="file-section">
+    <h2><a href="docs/follow_path_airsim.html">follow_path_airsim.py</a></h2>
+    <p>Experimental code for interpreting a predefined map for the AirSim drone to follow(Still in development!).</p>
+</div>
+
+<div class="file-section">
+    <h2><a href="docs/modules.html">modules.py</a></h2>
+    <p>A set of simple AirSim flight methods that work with or without a ROS connection (see line 15 for details). It provides basic functionalities like connecting to the drone, moving in specified directions, and taking off.</p>
+</div>
+
+<div class="file-section">
+    <h2>testFlight.py</h2>
+    <p>A simple test flight script to confirm compatibility with the setup and ensure that all components are functioning as expected. For relevant documentation (inherits all methods from modules.py)</p>
+</div>
+
+</body>
+</html>

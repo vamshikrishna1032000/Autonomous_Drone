@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Script Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1, h2 { color: #333; }
+        code { background-color: #f4f4f4; padding: 2px 4px; }
+        pre { background-color: #f8f8f8; border: 1px solid #ddd; padding: 10px; }
+    </style>
+</head>
+<body>
+    <!-- Document Header -->
+    <h1>follow_object_airsim.py</h1>
+    <p>This document outlines the structure and functionality of the Python script <code>follow_object_airsim.py</code>.</p>
+
+    <!-- Overview Section -->
+    <h2>Overview</h2>
+    <p>This is the main proof of concept script for our autonomous flight. The program initializes a drone takeoff, then triggers an object detection loop via the Zed SDK, which triggers the AirSim flight directions. </p>
+    <p>Once an object is detected, its distance from the camera, as well as its required yaw angle from center are both calculated. Then the drone passes those parameters to the drone movement methods in modules.py to commence movement. </p>
+    <p>Depending on the path planned for the drone, you will need to provide movement context per each waypoint for the drone to navigate. There is a sample for such a feature commented out in line 130.</p>
+
+    <!-- Main Functions and Data Fields Section -->
+    <h2>Main Functions and Data Fields</h2>
+    <h3>zed.grab()</h3>
+    <p>Executes the network detector on the video stream. Nested in a while loop for continuous deployment.</p>
+    <h3>main_detection</h3>
+    <p>This is the stored detection model passed to the camera. The defaults in the script is the YOLOv5 lite model with the PERSON_HEAD categorizer (see line 87). This network can be changed to a custom network provided the path (see line 88).</p>
+    <h3>obj_array[]</h3>
+    <p>Contains the set of identified objects from the network. obj_array[0].position returns the xyz coordinates of the first waypoint and then passes those to the AirSim client movement module methods.</p>
+    <h3>client.rotateToYawAsync() + client.moveByVelocityAsync()</h3>
+    <p>Main movement controls of the drone, modified by the position value. See modules doc for further description of the methods.</p>
+    <h3>waypoints[]</h3>
+    <p>Stores the desired yaw rotations for each consecutive waypoint. Requires the client's input to determine proper drone navigation of a path (see lines 153-155).</p>
+
+    <!-- Script Execution Section -->
+    <h2>Script Execution</h2>
+    <p>First, run an instance of AirSim on Unreal Engine. Initialize the multicopter. Point the ZED 2 camera at your first waypoint, then run the script!</p>
+
+</body>
+</html>

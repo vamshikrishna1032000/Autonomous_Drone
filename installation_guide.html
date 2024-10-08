@@ -1,0 +1,295 @@
+<html>
+<head>
+<title>Autonomous Drone Navigation End User Manual</title> 
+</head>
+
+<body>
+
+<h1>Autonomous Drone Navigation End User Manual</h1>
+
+<h2>Objective</h2>
+
+<p>This project aims to develop a sophisticated Autonomous Drone Navigation System. It involves the creation of a high-tech flight computer that can interpret depth images from lidar and a Zed stereoscopic camera. This technology will enable the drone to autonomously navigate its environment and determine flight paths without relying on GPS data.</p>
+
+<h2>Hardware Requirements</h2>
+
+<ul>
+<li>Drone</li>
+<li>Zed 2 Camera</li>
+<li>2D Lidar</li> 
+<li>NVIDIA Jetson Nano</li>
+<li>Pixhawk Flight Controller</li>
+</ul>  
+
+<h2>Software Requirements</h2>
+
+<ul>
+<li>Visual Studio Code</li>
+<li>Zed SDK</li>
+<li>ROS (Robot Operating System)</li>
+<li>Unreal Engine</li>
+<li>QGroundControl</li>
+</ul>
+
+<h2>Installation Guidelines</h2>
+
+<h3>ZED SDK Installation</h3>
+
+<b>Prerequisites:</b>
+<ul>
+<li>A compatible ZED stereo camera.</li>  
+<li>System meeting Stereolabs' minimum hardware requirements.</li>
+</ul>
+
+<b>Installation Steps:</b>
+<ol>
+<li>Download the SDK: Visit the ZED SDK Download Page and download the latest version for your Windows system.</li>
+<li>Run the Installer: Execute the downloaded .exe file and follow the on-screen instructions to install drivers and the SDK.</li>
+<li>Restart Your Computer: Reboot to ensure all drivers are properly loaded.</li>
+</ol>
+
+<h2>AirSim Drone Simulator Setup</h2>
+<li> AirSim is not longer supported by Microsoft, the alternative is Colosseum, the open source inheritor of AirSim. Download the repo here - <a href="https://github.com/CodexLabsLLC/Colosseum">Colosseum Repo Link</a> </li>
+<li>The AirSim documentation is still the main source of information on the repo. - <a href=https://microsoft.github.io/AirSim/>AirSim Documentation</a> </li>
+<h3>Dependencies:</h3>
+
+<ul>
+  <li>Unreal Engine</li>
+  <li>Visual Studio 2022</li>
+</ul>
+
+<h3>Unreal Engine:</h3>  
+
+<ul>
+  <li>A PC with Windows 10/11, macOS, or Linux.</li>
+  <li>Adequate hardware specs to run the engine smoothly (refer to Unreal Engine’s system requirements).</li>
+  <li>A free Epic Games account to download Unreal Engine.</li>
+</ul>
+
+<h4>Installation Steps</h4>
+
+<ol>
+  <li>Download Epic Games Launcher: Visit the Epic Games Download Page and download the Epic Games Launcher.</li>
+  <li>Install the Launcher: Run the downloaded installer and follow the on-screen instructions.</li>
+  <li>Launch Epic Games Launcher: Sign in with your Epic Games account.</li>
+  <li>Install Unreal Engine: Navigate to the ‘Unreal Engine’ tab, click on the ‘Library’ section, and then click the ‘+’ button to add a new engine version.</li>
+  <li>Choose Version: Select the desired version of Unreal Engine and click ‘Install’.</li>
+</ol>
+
+<h3>Visual Studio (2019 or 2022):</h3> 
+
+<h4>Windows Requirements – Visual Studio 2022</h4>
+
+<ul>
+  <li>You will need the c++ and .NET dev kits. Please refer to this video closely on proper instillation <a href="https://www.youtube.com/watch?v=8xJRr6Yr_LU">https://www.youtube.com/watch?v=8xJRr6Yr_LU</a></li> 
+</ul>
+
+<h4>Linux Requirements – Lutris</h4>
+
+<ul>
+  <li>Building AirSim on Linux requires Lutris to build Unreal Engine. First find a compatible Linux OS on the Colosseum repo then follow this Airsim doc for instillation steps <a href="https://microsoft.github.io/AirSim/build_linux/">https://microsoft.github.io/AirSim/build_linux/</a></li>
+</ul>
+
+
+<h3>QGroundControl Installation</h3>
+
+<b>Prerequisites:</b>
+<ul>  
+<li>A compatible computer.</li>
+<li>A UAV using MAVLink protocol.</li>
+<li>A stable internet connection.</li>
+</ul>
+
+<b>Installation Steps:</b> 
+<ol>
+<li>Download QGroundControl: Visit the QGroundControl Download Page and select the version for your OS.</li>
+<li>Install the Application:
+<ul>
+<li>Windows: Run the .exe installer and follow the prompts.</li>
+<li>macOS: Open the .dmg file and move QGroundControl to your Applications folder.</li>
+</ul>
+</li>
+</ol>
+
+<b>Post-Installation:</b>  
+<ul>
+<li>Connect to Your UAV: Use USB, Telemetry Radio, or Wi-Fi to connect your UAV to QGroundControl.</li>
+<li>Firmware Setup: Update your UAV's firmware via QGroundControl if necessary.</li>
+<li>Calibrate Sensors: Follow QGroundControl's instructions for sensor calibration.</li>
+</ul>
+
+<h3>ROS (Robot Operating System) with RPLidar: Installation and Setup Guide</h3>
+
+<b>Prerequisites</b>
+<ul>
+<li>Operating System: Ubuntu 20.04 (Focal) or Windows 10/11.</li>
+<li>Ubuntu Setup:
+<ul>  
+<li>Configure Ubuntu repositories.</li>
+<li>Set up the necessary environment.</li>
+</ul>
+</li>
+</ul>
+
+<b>Installation Steps for ROS on Ubuntu</b>
+<ol>
+<li>Follow the comprehensive installation guide for ROS Noetic at <a href="http://wiki.ros.org/noetic/Installation/Ubuntu">ROS Noetic Installation on Ubuntu</a>.</li>
+</ol>
+
+<b>Building the RPLidar ROS Package</b>  
+<ol>
+<li>Create a Catkin Workspace: Set up a new workspace for Catkin.</li>
+<li>Clone the RPLidar Project:
+<ul>
+<li>Navigate to the src folder of your Catkin workspace.</li>
+<li>Clone the RPLidar ROS package from GitHub: <a href="https://github.com/robopeak/rplidar_ros">RPLidar ROS GitHub Repository</a>.</li>
+</ul>
+</li>
+<li>Build the Package:
+<ul>  
+<li>Run catkin_make to build the rplidarNode and rplidarNodeClient.</li>
+</ul>  
+</li>
+</ol>
+
+<b>Running the RPLidar ROS Package</b>
+<ul>
+<li><b>Option 1: Using RViz:</b> 
+<ul>
+<li>Execute roslaunch rplidar_ros view_rplidar.launch.</li>
+<li>View RPLidar's scan results in RViz.</li>
+</ul>
+</li>
+<li><b>Option 2: Using Test Application:</b>
+<ul>
+<li>Start the node with roslaunch rplidar_ros rplidar.launch.</li>
+<li>Run rosrun rplidar_ros rplidarNodeClient.</li> 
+<li>Check the RPLidar's scan results in the console.</li>
+</ul>
+</li>
+</ul>
+
+<b>RPLidar SDK Installation on Windows</b>
+<ol>
+<li>Download the SDK: 
+<ul>
+<li>Get the RPLidar A1M8 SDK from Slamtec, which includes user manuals, the RPLidar kit, datasheets, and more.</li>
+</ul>
+</li>
+<li>Install the Driver:   
+<ul>
+<li>Use CP210xVCPInstaller_x64 from the SDK package, located in rplidar_sdk\rplidar_sdk-master\tools\cp2102_driver\CP210x_Windows_Drivers.</li>
+</ul>
+</li>
+<li>Connect and Verify:
+<ul>  
+<li>Connect the RPLidar to your system via USB.</li>
+<li>Ensure the correct COM port is visible in the Device Manager.</li>
+<li>A UI application representing the Lidar should appear once the setup is successful.</li> 
+</ul>
+</li>
+</ol>
+
+<h2>Running the Autonomous Drone Navigation System Project</h2>
+
+<b>Step 1: Setting Up the Hardware</b>
+<ol>
+<li>Assemble the Drone: Ensure the drone is properly assembled, including the attachment of the Zed 2 camera, 2D lidar, and the Pixhawk flight controller.</li>
+<li>Connect to Jetson Nano: Securely connect the Zed 2 camera and 2D lidar to the NVIDIA Jetson Nano, ensuring all connections are stable and secure.</li>
+</ol>
+
+<b>Step 2: Initial Software Configuration</b>  
+<ol>
+<li>Configure ROS: Launch ROS on the Jetson Nano and ensure it recognizes the Zed 2 camera and 2D lidar.</li>
+<li>Unreal Engine Setup: If simulation is part of the project, set up the environment in Unreal Engine. Ensure that the Unreal Engine is ready to simulate the environment for the drone.</li>
+</ol>
+
+<b>Step 3: Integrating the Components</b>
+<ol>
+<li>Sync Devices: Ensure that all devices (camera, lidar, Jetson Nano, Pixhawk) are communicating correctly with each other.</li> 
+<li>Calibrate Sensors: Using QGroundControl, calibrate the drone's sensors, including the camera and lidar, for accurate data collection and navigation.</li>
+</ol>
+
+<b>Step 4: Test Run in a Controlled Environment</b>
+<ol>
+<li>Simulation Test: If applicable, run a simulation test in Unreal Engine to verify the drone's navigation and obstacle avoidance algorithms.</li>
+<li>Physical Test: Conduct a controlled physical test of the drone in a safe, open area. Monitor the drone’s response to environmental data and its autonomous decision-making process.</li>
+</ol>
+
+<b>Step 5: Monitoring and Debugging</b> 
+<ol>
+<li>Live Monitoring: Use Visual Studio Code and QGroundControl for live monitoring of the drone's performance. Check for real-time data transmission and processing.</li>
+<li>Debugging: Identify any issues in the navigation system. Utilize logs and real-time data to debug and refine the system.</li>
+</ol>
+
+<b>Step 6: Iterative Testing and Refinement</b>
+<ol>
+<li>Iterative Approach: Conduct multiple test flights, making adjustments to the software and calibration as necessary based on test outcomes.</li>
+<li>Environment Variation: Test in various environments and conditions to ensure robustness and reliability of the navigation system.</li>  
+</ol>
+
+<b>Step 7: Documentation and Analysis</b>
+<ol>
+<li>Record Findings: Document the outcomes of each test, including any anomalies or successful navigation instances.</li>
+<li>Analyze Data: Analyze the collected data to understand the drone's performance and areas for improvement.</li>
+</ol>
+
+<b>Step 8: Final Integration and Testing</b>  
+<ol>
+<li>Integration: Once satisfied with the test results, integrate all components for the final setup.</li>
+<li>Comprehensive Testing: Perform comprehensive testing in diverse environments to ensure the system is fully functional and reliable.</li>
+</ol>
+
+<h2>Troubleshooting</h2>
+
+<b>Hardware Issues</b>
+<ol>
+<li>Camera/Lidar Not Detected:
+<ul>  
+<li>Check Connections: Ensure that the Zed 2 camera and 2D lidar are properly connected .</li>
+<li>Reboot System: Sometimes a simple reboot can resolve detection issues.</li>
+<li>Driver Verification: Verify that the correct drivers are installed for the camera and lidar.</li>
+</ul>
+</li>
+<li>Pixhawk Connection Issues:
+<ul>
+<li>Firmware Check: Ensure the Pixhawk has the latest firmware.</li> 
+<li>Wiring: Check all cables and connections to the Pixhawk for any loose or damaged wires.</li>
+<li>QGroundControl: Use QGroundControl to diagnose connection or recognition issues.</li>
+</ul>
+</li>
+</ol>
+
+<b>Software Issues</b>
+<ol>
+<li>ROS Integration Problems:
+<ul>
+<li>Dependency Check: Ensure all ROS dependencies are properly installed.</li>
+<li>Package Conflicts: Look for any conflicting packages that might cause issues and resolve them.</li>  
+</ul>
+</li>
+<li>Unreal Engine Simulation Errors: 
+<ul>
+<li>System Requirements: Verify that your system meets the hardware requirements for running Unreal Engine.</li>
+<li>Update Engine: Ensure Unreal Engine is up-to-date.</li>
+</ul>
+</li>
+<li>SDK Integration Issues:
+<ul>
+<li>SDK Version: Ensure you are using the correct version of the ZED SDK that is compatible with your system and the ROS version you are using.</li>
+<li>Dependency Conflicts: Check for any conflicts or missing dependencies that the ZED SDK might have with other software components on your system</li>
+</ul>
+</li>
+</ol>  
+
+<b>General Troubleshooting</b>
+<ol>
+<li>Systematic Approach: Tackle one issue at a time, starting from the most basic checks to more complex diagnostics.</li> 
+<li>Documentation: Keep a record of any errors encountered and how they were resolved for future reference.</li>
+<li>Community and Forums: Utilize online forums and communities related to ROS, Unreal Engine, and drone hardware for additional support and insights.</li>
+<li>Software Updates: Regularly update all software components to ensure compatibility and performance.</li>
+</ol>
+
+
+</body>
+</html>

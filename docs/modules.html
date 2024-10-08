@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drone Control Functions Documentation</title>
+</head>
+<body>
+
+<h1>Drone Control Functions Documentation</h1>
+
+<p>This documentation provides an overview of the functions used to control a drone in an AirSim simulation environment. Each function is designed to perform specific tasks related to drone movement and status retrieval.</p>
+
+<h2>Function Descriptions</h2>
+
+<h3>get_client()</h3>
+<p><strong>Description:</strong> Establishes a connection with the AirSim simulator and initializes control over the drone. It also enables API control and arms the drone to prepare for movement.</p>
+<p><strong>Returns:</strong> A client object that can be used to interact with the drone in the AirSim environment.</p>
+<h3>airsim_toROS.initialize_ros_airsim()</h3>
+  <p>Retrieves an AirSim client with the appropriate ROS nodes initialized (File must be in ROS enviroment Directory if true!</p>
+<h3>get_Current_Location(client)</h3>
+<p><strong>Description:</strong> Retrieves the current location of the drone within the simulation environment.</p>
+<p><strong>Parameters:</strong> <code>client</code> - The client object returned by <code>get_client()</code>.</p>
+<p><strong>Returns:</strong> The current position of the drone as a kinematic estimation.</p>
+
+<h3>take_Off(client)</h3>
+<p><strong>Description:</strong> Commands the drone to take off and hover in the air. The drone must be armed and connected before this command is issued.</p>
+<p><strong>Parameters:</strong> <code>client</code> - The client object returned by <code>get_client()</code>.</p>
+
+<h3>go_Forward(client, distance)</h3>
+<p><strong>Description:</strong> Moves the drone forward by a specified distance in meters.</p>
+<p><strong>Parameters:</strong> <code>client</code> - The client object returned by <code>get_client()</code>. <code>distance</code> - The distance in meters to move forward.</p>
+
+<h3>go_Back(client, distance)</h3>
+<p><strong>Description:</strong> Moves the drone backward by a specified distance in meters.</p>
+<p><strong>Parameters:</strong> <code>client</code> - The client object returned by <code>get_client()</code>. <code>distance</code> - The distance in meters to move backward.</p>
+
+<h3>go_Right(client, distance)</h3>
+<p><strong>Description:</strong> Moves the drone to the right by a specified distance in meters.</p>
+<p><strong>Parameters:</strong> <code>client</code> - The client object returned by <code>get_client()</code>. <code>distance</code> - The distance in meters to move right.</p>
+
+<!-- Add other function descriptions here as necessary -->
+
+</body>
+</html>

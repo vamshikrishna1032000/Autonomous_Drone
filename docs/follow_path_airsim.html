@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>airsim_follow_path Documentation</title>
+    <style>
+        body {font-family: Arial, sans-serif; line-height: 1.6;}
+        .function {background-color: #f4f4f4; border-left: 5px solid #555; margin: 20px 0; padding: 0 10px;}
+        .parameter {font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>NOTE THIS IS IN DEVELOPMENT</h1>
+    <p>TODO: extract the marker trajectory from the 3D array via RTABMAP - then pass that variable to the ROS Subscriber via a ROS message.</p>
+    <div class="function">
+    <h2>Function: airsim_follow</h2>
+    <p>Initializes a ROS node and starts the AirSim drone to follow a premade based on the received spline marker array.</p>
+    <p>Use the RTABMAP Zed2 stereoscopic camera to generate the PATH, see the User Manual Documentation for more information on this process.</p>
+
+    <h3>Procedure:</h3>
+    <ol>
+        <li>Starts ROS with the <code>rospy.init_node('airsim_follow_trajectory')</code> command.</li>
+        <li>Sets a global velocity parameter, which can be adjusted via ROS.</li>
+        <li>Subscribes to the <code>/trajectory/spline_marker_array</code> topic to receive the path for the drone.</li>
+        <li>Keeps the node running with <code>rospy.spin()</code>.</li>
+    </ol>
+
+
+    <h3>Subscriptions:</h3>
+    <ul>
+        <li><span class="parameter">/trajectory/spline_marker_array (MarkerArray):</span> A ROS subscription to the 3d path array, which holds the path information.</li>
+    </ul>
+
+    <h3>Usage:</h3>
+    <p>Invoke this function to start the AirSim drone simulation with ROS, enabling it to follow a trajectory based on the received spline marker array.</p>
+</div>
+<div class="function">
+    <h2>Initial Connection to AirSim</h2>
+    <p>Establishes a connection with the AirSim simulator and enables API control for sending commands to the drone.</p>
+    
+    <h3>Code Overview:</h3>
+    <ul>
+        <li>Initializes the connection to the AirSim simulator using the <code>airsim.MultirotorClient()</code> class.</li>
+        <li>Confirms the connection with <code>client.confirmConnection()</code>.</li>
+        <li>Enables API control to allow command sending with <code>client.enableApiControl(True)</code>.</li>
+    </ul>
+
+    <h2>Function: trajectory_callback</h2>
+    <p>Defines the behavior for following a trajectory based on a received spline marker array message. It calculates the path and commands the drone to move accordingly.</p>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">spline_marker_array_msg:</span> The received marker array ROS message containing the trajectory points.</li>
+    </ul>
+
+    <h3>Procedure:</h3>
+    <ol>
+        <li>Calculates the number of trajectories received.</li>
+        <li>Initializes an empty list for the following path.</li>
+        <li>Iterates over the points in the last published trajectory, converting them into a format suitable for AirSim and adding them to the path queue.</li>
+        <li>Commands the client to move along the calculated path using <code>client.moveOnPathAsync()</code> with specified parameters including velocity and drivetrain type.</li>
+        <li>Disables API control after the path is followed with <code>client.enableApiControl(False)</code>.</li>
+    </ol>
+
+    <h3>Usage:</h3>
+    <p>This callback function is triggered upon receiving a new spline marker array ROS message. It processes the message to command the drone to follow the specified trajectory.</p>
+</div>
+</body>
+</html>

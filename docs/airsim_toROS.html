@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>airsim_toROS.py Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1, h2 { color: #333; }
+        p { color: #555; }
+        code { background-color: #f4f4f4; padding: 2px 6px; }
+    </style>
+</head>
+<body>
+
+<h1>airsim_toROS.py Documentation</h1>
+
+<p>This document provides the code documentation for the <code>airsim_toROS.py</code> file, which includes functions to connect ROS with the AirSim simulation environment and send commands to control a drone.</p>
+
+<h2>Functions</h2>
+
+<h3>initialize_ros_airsim()</h3>
+<p><strong>Description:</strong> Initializes a ROS node and establishes a connection with the AirSim simulator. It sets up ROS publishers for sending velocity and gimbal angle commands.</p>
+<p><strong>Returns:</strong> A tuple containing the AirSim client, velocity command publisher, and gimbal command publisher.</p>
+
+<h3>send_velocity_command(vel_cmd_publisher, velocity)</h3>
+<p><strong>Description:</strong> Sends a velocity command to the drone via ROS.</p>
+<p><strong>Parameters:</strong></p>
+<ul>
+    <li><code>vel_cmd_publisher</code>: The ROS publisher for velocity commands.</li>
+    <li><code>velocity</code>: A list or tuple of three floats representing the x, y, and z components of the velocity.</li>
+</ul>
+
+<!-- Include additional function descriptions here -->
+
+</body>
+</html>
